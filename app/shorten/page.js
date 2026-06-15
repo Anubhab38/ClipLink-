@@ -96,20 +96,20 @@ const Shorten = () => {
           Generate
         </button>
         <>
-          <div className="mt-1 h-5 ml-4 font-semibold">
+          <div className="mt-4 flex flex-col items-center gap-3 font-semibold">
             {generated && (
-              <code>
-                YOUR URL:{" "}
+              <div className="flex items-center gap-2 max-w-full ">
                 <Link
                   target="_blank"
                   href={generated}
-                  className="hover:underline hover:text-green-600"
+                  className="hover:underline hover:text-green-600 break-all font-semibold"
                 >
                   {generated}
                 </Link>
+
                 <button
                   onClick={copied}
-                  className="ml-2 p-2 rounded-md hover:bg-gray-800 transition justify-end-safe items-end-safe place-content-end"
+                  className="p-2 rounded-md hover:bg-gray-800 transition shrink-0"
                 >
                   {copy ? (
                     <Check size={20} strokeWidth={1.25} />
@@ -117,7 +117,7 @@ const Shorten = () => {
                     <Copy size={20} strokeWidth={1.25} />
                   )}
                 </button>
-              </code>
+              </div>
             )}
 
             {error && <p>{error}</p>}
@@ -133,9 +133,7 @@ const Shorten = () => {
                   className="p-2 bg-white rounded-xl"
                 />
 
-                <p className="mt-3 text-sm text-gray-100">
-                  Scan to open
-                </p>
+                <p className="mt-3 text-sm text-gray-100">Scan to open</p>
               </div>
             )}
           </div>
