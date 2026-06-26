@@ -1,24 +1,24 @@
 import Link from "next/link";
+
 export default function Home() {
   return (
-    <div className="flex-1 flex items-center justify-center pt-60">
-      <section className="grid grid-cols-2 gap-16 items-center max-w-7xl px-10">
-        <div className="flex flex-col gap-6">
-          <h1 className="text-5xl font-extrabold tracking-wider text-clip ">
-            Shorter Links. Lesser Stress.
-          </h1>
+    <div className="flex-1 flex items-center justify-center px-6 py-16 md:py-24">
+      <section className="max-w-4xl w-full text-center flex flex-col items-center gap-6 md:gap-8">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-white drop-shadow-sm">
+          Shorter Links.<br className="hidden sm:inline" /> Lesser Stress.
+        </h1>
 
-          <p className="text-lg text-gray-600 dark:text-gray-100 text-clip">
-            Shorten your URLs instantly with ClipLink - fast, simple, and
-            reliable URL shortening. No login or sign up required. Shorten your
-            URLs on the go.
-          </p>
-          <Link href="/shorten/">
-            <button className="self-center bg-red-800 text-white px-6 py-3 rounded-lg w-fit font-semibold tracking-wide text-clip active:scale-95">
-              Get Started
-            </button>
-          </Link>
-        </div>
+        <p className="max-w-2xl text-base sm:text-lg md:text-xl text-gray-200/90 leading-relaxed font-medium">
+          Shorten your URLs instantly with ClipLink - fast, simple, and
+          reliable URL shortening. No login or sign up required. Shorten your
+          URLs on the go.
+        </p>
+
+        <Link href="/shorten">
+          <button className="bg-red-800 hover:bg-red-700 text-white px-8 py-3.5 rounded-xl font-bold tracking-wide transition-all active:scale-95 shadow-lg shadow-red-900/30 hover:shadow-red-800/40 cursor-pointer">
+            Get Started
+          </button>
+        </Link>
       </section>
     </div>
   );

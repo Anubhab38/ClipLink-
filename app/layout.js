@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${zalando.variable} ${zalando.variable} h-full antialiased`}
+      className={`${zalando.variable} h-full antialiased`}
     >
       <body className={`min-h-screen flex flex-col ${zalando.className}`}>
         <div className="fixed inset-0 -z-10 ">

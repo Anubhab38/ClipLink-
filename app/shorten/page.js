@@ -63,81 +63,98 @@ const Shorten = () => {
   };
 
   return (
-    <div className="flex justify-center items-start pt-32">
-      <div className="flex flex-col w-[500px] gap-4 p-5 rounded-xl">
-        <h1 className="text-2xl font-semibold text-center tracking-wide">
-          Generate your shortened URL
+    <div className="flex justify-center items-start pt-16 md:pt-28 px-4 pb-12">
+      <div className="flex flex-col w-full max-w-[500px] gap-6 p-6 md:p-8 rounded-2xl bg-black/30 border border-white/10 backdrop-blur-lg shadow-2xl">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-center tracking-wide text-white">
+          Shorten a Link
         </h1>
 
-        <input
-          type="text"
-          value={url}
-          placeholder="Enter your URL"
-          className="bg-gray-800 text-white p-2 rounded font-medium border-black "
-          onChange={(a) => {
-            seturl(a.target.value);
-          }}
-        />
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider pl-1">
+              Destination URL
+            </label>
+            <input
+              type="text"
+              value={url}
+              placeholder="https://example.com/very-long-url"
+              className="bg-white/5 border border-white/10 text-white p-3 rounded-xl font-medium focus:border-red-500/50 focus:bg-white/10 focus:outline-none transition-all duration-200 placeholder-gray-500 text-sm"
+              onChange={(a) => {
+                seturl(a.target.value);
+              }}
+            />
+          </div>
 
-        <input
-          type="text"
-          value={shorturl}
-          placeholder="Enter custom alias (optional)"
-          className="bg-gray-800 text-white p-2 rounded font-medium border-black "
-          onChange={(a) => {
-            setshorturl(a.target.value);
-          }}
-        />
+          <div className="flex flex-col gap-1.5">
+            <label className="text-xs font-semibold text-gray-300 uppercase tracking-wider pl-1">
+              Custom Alias (Optional)
+            </label>
+            <input
+              type="text"
+              value={shorturl}
+              placeholder="my-custom-alias"
+              className="bg-white/5 border border-white/10 text-white p-3 rounded-xl font-medium focus:border-red-500/50 focus:bg-white/10 focus:outline-none transition-all duration-200 placeholder-gray-500 text-sm"
+              onChange={(a) => {
+                setshorturl(a.target.value);
+              }}
+            />
+          </div>
+        </div>
 
         <button
-          className=" self-center rounded-lg active:scale-90 px-4 py-2 border font-semibold border-black bg-red-800 text-white text-sm "
+          className="self-center rounded-xl active:scale-95 px-6 py-3 font-bold bg-red-800 hover:bg-red-700 text-white text-sm transition-all duration-200 shadow-lg shadow-red-900/20 hover:shadow-red-800/40 w-full sm:w-auto sm:px-10 cursor-pointer"
           onClick={generate}
         >
-          Generate
+          Generate Short Link
         </button>
-        <>
-          <div className="mt-4 flex flex-col items-center gap-3 font-semibold">
+
+        {(generated || error) && (
+          <div className="mt-2 flex flex-col items-center gap-4 w-full">
             {generated && (
-              <div className="flex items-center gap-2 max-w-full ">
+              <div className="flex items-center justify-between gap-3 p-3.5 bg-green-500/10 border border-green-500/20 rounded-xl w-full">
                 <Link
                   target="_blank"
                   href={generated}
-                  className="hover:underline hover:text-green-600 break-all font-semibold"
+                  className="hover:underline text-green-400 break-all font-semibold text-sm transition-colors"
                 >
                   {generated}
                 </Link>
 
                 <button
                   onClick={copied}
-                  className="p-2 rounded-md hover:bg-gray-800 transition shrink-0"
+                  className="p-2 rounded-lg hover:bg-green-500/20 text-green-400 transition shrink-0 cursor-pointer"
+                  title="Copy link"
                 >
                   {copy ? (
-                    <Check size={20} strokeWidth={1.25} />
+                    <Check size={18} strokeWidth={2.5} />
                   ) : (
-                    <Copy size={20} strokeWidth={1.25} />
+                    <Copy size={18} strokeWidth={2.5} />
                   )}
                 </button>
               </div>
             )}
 
-            {error && <p>{error}</p>}
-          </div>
-          <div>
-            {generated && (
-              <div className="mt-5 flex flex-col items-center">
-                <QRCode
-                  value={generated}
-                  size={180}
-                  bgColor="#ffffff"
-                  fgColor="#000000"
-                  className="p-2 bg-white rounded-xl"
-                />
+            {error && (
+              <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl w-full text-center">
+                <p className="text-red-400 text-sm font-semibold">{error}</p>
+              </div>
+            )}
 
-                <p className="mt-3 text-sm text-gray-100">Scan to open</p>
+            {generated && (
+              <div className="mt-2 flex flex-col items-center gap-2">
+                <div className="p-3 bg-white rounded-2xl shadow-xl">
+                  <QRCode
+                    value={generated}
+                    size={160}
+                    bgColor="#ffffff"
+                    fgColor="#000000"
+                  />
+                </div>
+                <p className="text-xs font-semibold text-gray-400">Scan QR Code to open</p>
               </div>
             )}
           </div>
-        </>
+        )}
       </div>
     </div>
   );
