@@ -6,10 +6,10 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/5 bg-black/20 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl h-16 items-center justify-between px-6 text-lg font-semibold tracking-wide text-white">
-        <div className="flex items-center gap-2 hover:opacity-85 transition-opacity">
+        <Link href="/" className="flex items-center gap-2 hover:opacity-85 transition-opacity">
           <Cable size={22} className="text-red-500" />
-          <Link href="/">ClipLink</Link>
-        </div>
+          <span>ClipLink</span>
+        </Link>
         <nav>
           <ul className="flex items-center gap-6 text-sm sm:text-base">
             <li>
